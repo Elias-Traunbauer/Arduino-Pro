@@ -88,11 +88,9 @@ namespace Arduino_Pro
             {
                 if (lbCompletion.Enabled)
                 {
+                    tbCode.Undo();
+
                     tbCode.Text.Insert(tbCode.SelectionStart, lbCompletion.SelectedItem.ToString());
-                }
-                else
-                {
-                    tbCode.Text.Insert(tbCode.SelectionStart, "     ");
                 }
             }
 

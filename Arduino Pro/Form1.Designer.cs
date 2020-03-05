@@ -82,20 +82,25 @@
             // tbCode
             // 
             this.tbCode.AcceptsTab = true;
+            this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCode.AutoCompleteCustomSource.AddRange(new string[] {
             "sevas"});
             this.tbCode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.tbCode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbCode.BackColor = System.Drawing.SystemColors.InfoText;
+            this.tbCode.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCode.ForeColor = System.Drawing.SystemColors.Window;
             this.tbCode.Location = new System.Drawing.Point(12, 27);
             this.tbCode.Multiline = true;
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(776, 389);
             this.tbCode.TabIndex = 4;
+            this.tbCode.Text = "void setup() \r\n{\r\n\r\n}\r\n\r\nvoid loop()\r\n{\r\n\r\n}";
             this.tbCode.WordWrap = false;
             this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
-            this.tbCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCode_KeyDown);
+            this.tbCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCode_KeyDown);
             // 
             // MainWindow
             // 
