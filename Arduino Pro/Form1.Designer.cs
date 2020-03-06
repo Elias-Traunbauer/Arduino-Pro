@@ -33,32 +33,37 @@
             this.status = new System.Windows.Forms.StatusStrip();
             this.lbCompletion = new System.Windows.Forms.ListBox();
             this.tbCode = new System.Windows.Forms.TextBox();
+            this.IntelliSenseWorker = new System.ComponentModel.BackgroundWorker();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuMain
             // 
             this.menuMain.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.menuMain.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuMain.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(800, 24);
+            this.menuMain.Size = new System.Drawing.Size(1200, 33);
             this.menuMain.TabIndex = 0;
             this.menuMain.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // status
             // 
             this.status.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.status.Location = new System.Drawing.Point(0, 428);
+            this.status.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.status.Location = new System.Drawing.Point(0, 670);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(800, 22);
+            this.status.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
+            this.status.Size = new System.Drawing.Size(1200, 22);
             this.status.TabIndex = 1;
             this.status.Text = "statusStrip1";
             // 
@@ -68,12 +73,14 @@
             this.lbCompletion.Enabled = false;
             this.lbCompletion.ForeColor = System.Drawing.SystemColors.Window;
             this.lbCompletion.FormattingEnabled = true;
+            this.lbCompletion.ItemHeight = 20;
             this.lbCompletion.Items.AddRange(new object[] {
             "Auto Complete"});
-            this.lbCompletion.Location = new System.Drawing.Point(578, 96);
+            this.lbCompletion.Location = new System.Drawing.Point(867, 148);
+            this.lbCompletion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lbCompletion.Name = "lbCompletion";
             this.lbCompletion.ScrollAlwaysVisible = true;
-            this.lbCompletion.Size = new System.Drawing.Size(173, 121);
+            this.lbCompletion.Size = new System.Drawing.Size(258, 184);
             this.lbCompletion.TabIndex = 3;
             this.lbCompletion.TabStop = false;
             this.lbCompletion.UseTabStops = false;
@@ -92,27 +99,34 @@
             this.tbCode.BackColor = System.Drawing.SystemColors.InfoText;
             this.tbCode.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCode.ForeColor = System.Drawing.SystemColors.Window;
-            this.tbCode.Location = new System.Drawing.Point(12, 27);
+            this.tbCode.Location = new System.Drawing.Point(18, 42);
+            this.tbCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbCode.Multiline = true;
             this.tbCode.Name = "tbCode";
-            this.tbCode.Size = new System.Drawing.Size(776, 389);
+            this.tbCode.Size = new System.Drawing.Size(1162, 596);
             this.tbCode.TabIndex = 4;
             this.tbCode.Text = "void setup() \r\n{\r\n\r\n}\r\n\r\nvoid loop()\r\n{\r\n\r\n}";
             this.tbCode.WordWrap = false;
             this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
             this.tbCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCode_KeyDown);
             // 
+            // IntelliSenseWorker
+            // 
+            this.IntelliSenseWorker.WorkerSupportsCancellation = true;
+            this.IntelliSenseWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.IntelliSenseWorker_DoWork);
+            // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.tbCode);
             this.Controls.Add(this.lbCompletion);
             this.Controls.Add(this.status);
             this.Controls.Add(this.menuMain);
             this.MainMenuStrip = this.menuMain;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainWindow";
             this.ShowIcon = false;
             this.Text = "Arduino";
@@ -130,6 +144,7 @@
         private System.Windows.Forms.StatusStrip status;
         private System.Windows.Forms.ListBox lbCompletion;
         private System.Windows.Forms.TextBox tbCode;
+        private System.ComponentModel.BackgroundWorker IntelliSenseWorker;
     }
 }
 

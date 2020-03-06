@@ -5,14 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Arduino_Pro
 {
     public partial class MainWindow : Form
     {
-        string[] autoComplete = { "#include", "digitalWrite", "digitalRead", "analogWrite", "analogRead", "pinMode" };
+        string[] autoComplete = { "#include", "int", "float", "String", "double", "digitalRead", "digitalWrite", "pinMode", "analogRead", "analogReference", "analogWrite", "analogReadResolution", "analogWriteResolution", "noTone", "pulseIn", "pulseInLong", "shiftIn", "shiftOut", "tone", "delay", "delayMicroseconds", "micros", "millis", "abs", "constrain", "map", "max", "min", "pow", "sq", "sqrt", "cos", "sin", "tan", "isAlpha", "isAlphaNumeric", "isAscii", "isControl", "isDigit", "isGraph", "isHexadecimalDigit", "isLowerCase", "isPrintable", "isPunct", "isSpace", "isUpperCase", "isWhitespace", "random", "randomSeed", "bit", "bitClear", "bitRead", "bitSet", "bitWrite", "highByte", "lowByte", "attachInterrupt", "detachInterrupt", "interrupts", "noInterrupts", "Serial", "Stream" };
 
         public MainWindow()
         {
@@ -21,7 +21,7 @@ namespace Arduino_Pro
             CheckForIllegalCrossThreadCalls = false;
         }
 
-        private void tbCode_TextChanged(object sender, EventArgs e)
+        void IntelliSense()
         {
             lbCompletion.Items.Clear();
 
@@ -59,7 +59,7 @@ namespace Arduino_Pro
             {
                 Point temp = tbCode.GetPositionFromCharIndex(pos);
 
-                temp.X += tbCode.Location.X;
+                temp.X += tbCode.Location.X + 3;
 
                 temp.Y += tbCode.Location.Y + 20;
 
@@ -79,6 +79,10 @@ namespace Arduino_Pro
 
                 lbCompletion.Visible = false;
             }
+        }
+
+        private void tbCode_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
@@ -110,6 +114,11 @@ namespace Arduino_Pro
                 if (lbCompletion.SelectedIndex != 0)
                     lbCompletion.SelectedIndex--;
             }
+        }
+
+        private void IntelliSenseWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IntelliSense();
         }
     }
 }
