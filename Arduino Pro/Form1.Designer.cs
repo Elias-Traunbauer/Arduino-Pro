@@ -32,8 +32,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.status = new System.Windows.Forms.StatusStrip();
             this.lbCompletion = new System.Windows.Forms.ListBox();
-            this.tbCode = new System.Windows.Forms.TextBox();
             this.IntelliSenseWorker = new System.ComponentModel.BackgroundWorker();
+            this.tbCode = new System.Windows.Forms.RichTextBox();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             this.fileToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(1200, 33);
+            this.menuMain.Size = new System.Drawing.Size(1200, 36);
             this.menuMain.TabIndex = 0;
             this.menuMain.Text = "menuStrip1";
             // 
@@ -86,34 +86,26 @@
             this.lbCompletion.UseTabStops = false;
             this.lbCompletion.Visible = false;
             // 
+            // IntelliSenseWorker
+            // 
+            this.IntelliSenseWorker.WorkerSupportsCancellation = true;
+            this.IntelliSenseWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.IntelliSenseWorker_DoWork);
+            // 
             // tbCode
             // 
             this.tbCode.AcceptsTab = true;
             this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCode.AutoCompleteCustomSource.AddRange(new string[] {
-            "sevas"});
-            this.tbCode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.tbCode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbCode.BackColor = System.Drawing.SystemColors.InfoText;
-            this.tbCode.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbCode.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCode.ForeColor = System.Drawing.SystemColors.Window;
-            this.tbCode.Location = new System.Drawing.Point(18, 42);
-            this.tbCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbCode.Multiline = true;
+            this.tbCode.Location = new System.Drawing.Point(12, 47);
             this.tbCode.Name = "tbCode";
-            this.tbCode.Size = new System.Drawing.Size(1162, 596);
+            this.tbCode.Size = new System.Drawing.Size(1176, 610);
             this.tbCode.TabIndex = 4;
-            this.tbCode.Text = "void setup() \r\n{\r\n\r\n}\r\n\r\nvoid loop()\r\n{\r\n\r\n}";
-            this.tbCode.WordWrap = false;
+            this.tbCode.Text = "void setup() \n{\n\n}\n\nvoid loop()\n{\n\n}";
             this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
-            this.tbCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCode_KeyDown);
-            // 
-            // IntelliSenseWorker
-            // 
-            this.IntelliSenseWorker.WorkerSupportsCancellation = true;
-            this.IntelliSenseWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.IntelliSenseWorker_DoWork);
             // 
             // MainWindow
             // 
@@ -143,8 +135,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.StatusStrip status;
         private System.Windows.Forms.ListBox lbCompletion;
-        private System.Windows.Forms.TextBox tbCode;
         private System.ComponentModel.BackgroundWorker IntelliSenseWorker;
+        public System.Windows.Forms.RichTextBox tbCode;
     }
 }
 

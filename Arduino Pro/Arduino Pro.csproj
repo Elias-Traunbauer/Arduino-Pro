@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ColorCode, Version=1.0.1.62759, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ColorCode.1.0.1\lib\ColorCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Skybrud.SyntaxHighlighter, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Skybrud.SyntaxHighlighter.1.0.4\lib\net45\Skybrud.SyntaxHighlighter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Highlight\Highlight.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +73,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App_Code\Highlight\LICENSE" />
+    <None Include="App_Code\Highlight\README.md" />
+    <None Include="App_Code\Highlight\README.ru.md" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +89,90 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Highlight\classref.txt" />
+    <Content Include="Content\Highlight\arta.css" />
+    <Content Include="Content\Highlight\ascetic.css" />
+    <Content Include="Content\Highlight\brown_paper.css" />
+    <Content Include="Content\Highlight\brown_papersq.png" />
+    <Content Include="Content\Highlight\dark.css" />
+    <Content Include="Content\Highlight\default.css" />
+    <Content Include="Content\Highlight\far.css" />
+    <Content Include="Content\Highlight\github.css" />
+    <Content Include="Content\Highlight\googlecode.css" />
+    <Content Include="Content\Highlight\idea.css" />
+    <Content Include="Content\Highlight\ir_black.css" />
+    <Content Include="Content\Highlight\magula.css" />
+    <Content Include="Content\Highlight\monokai.css" />
+    <Content Include="Content\Highlight\pojoaque.css" />
+    <Content Include="Content\Highlight\pojoaque.jpg" />
+    <Content Include="Content\Highlight\rainbow.css" />
+    <Content Include="Content\Highlight\school_book.css" />
+    <Content Include="Content\Highlight\school_book.png" />
+    <Content Include="Content\Highlight\solarized_dark.css" />
+    <Content Include="Content\Highlight\solarized_light.css" />
+    <Content Include="Content\Highlight\sunburst.css" />
+    <Content Include="Content\Highlight\tomorrow-night-blue.css" />
+    <Content Include="Content\Highlight\tomorrow-night-bright.css" />
+    <Content Include="Content\Highlight\tomorrow-night-eighties.css" />
+    <Content Include="Content\Highlight\tomorrow-night.css" />
+    <Content Include="Content\Highlight\tomorrow.css" />
+    <Content Include="Content\Highlight\vs.css" />
+    <Content Include="Content\Highlight\xcode.css" />
+    <Content Include="Content\Highlight\zenburn.css" />
+    <Content Include="Content\SyntaxHighlighter\shCore.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreDjango.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreEclipse.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreEmacs.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreFadeToGrey.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreMDUltra.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreMidnight.css" />
+    <Content Include="Content\SyntaxHighlighter\shCoreRDark.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeDefault.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeDjango.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeEclipse.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeEmacs.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeFadeToGrey.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeMDUltra.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeMidnight.css" />
+    <Content Include="Content\SyntaxHighlighter\shThemeRDark.css" />
+    <Content Include="Scripts\Highlight\highlight.pack.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shAutoloader.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushAppleScript.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushAS3.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushBash.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushColdFusion.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushCpp.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushCSharp.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushCss.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushDelphi.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushDiff.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushErlang.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushGroovy.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushJava.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushJavaFX.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushJScript.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPerl.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPhp.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPlain.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPowerShell.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushPython.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushRuby.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushSass.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushScala.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushSql.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushVb.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shBrushXml.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shCore.js" />
+    <Content Include="Scripts\SyntaxHighlighter\shLegacy.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinFormsSyntaxHighlighter\WinFormsSyntaxHighlighter.csproj">
+      <Project>{A84B044A-F5DD-4220-BAFF-A18F17585E31}</Project>
+      <Name>WinFormsSyntaxHighlighter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

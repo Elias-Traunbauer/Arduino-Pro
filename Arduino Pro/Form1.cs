@@ -1,4 +1,5 @@
 ﻿using System;
+using Skybrud.SyntaxHighlighter;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,23 +7,37 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsSyntaxHighlighter;
 
 namespace Arduino_Pro
 {
     public partial class MainWindow : Form
     {
-        string[] autoComplete = { "#include", "int", "float", "String", "double", "digitalRead", "digitalWrite", "pinMode", "analogRead", "analogReference", "analogWrite", "analogReadResolution", "analogWriteResolution", "noTone", "pulseIn", "pulseInLong", "shiftIn", "shiftOut", "tone", "delay", "delayMicroseconds", "micros", "millis", "abs", "constrain", "map", "max", "min", "pow", "sq", "sqrt", "cos", "sin", "tan", "isAlpha", "isAlphaNumeric", "isAscii", "isControl", "isDigit", "isGraph", "isHexadecimalDigit", "isLowerCase", "isPrintable", "isPunct", "isSpace", "isUpperCase", "isWhitespace", "random", "randomSeed", "bit", "bitClear", "bitRead", "bitSet", "bitWrite", "highByte", "lowByte", "attachInterrupt", "detachInterrupt", "interrupts", "noInterrupts", "Serial", "Stream" };
+        bool completed = true;
+
+        string[] autoComplete = { "#include", "int", "float", "String", "double", "digitalRead", "digitalWrite", "pinMode", "analogRead", "analogReference", "analogWrite", "analogReadResolution", "analogWriteResolution", "noTone", "pulseIn", "pulseInLong", "shiftIn", "shiftOut", "tone", "delay", "delayMicroseconds", "micros", "millis", "abs", "constrain", "map", "max", "min", "pow", "sq", "sqrt", "cos", "sin", "tan", "isAlpha", "isAlphaNumeric", "isAscii", "isControl", "isDigit", "isGraph", "isHexadecimalDigit", "isLowerCase", "isPrintable", "isPunct", "isSpace", "isUpperCase", "isWhitespace", "random", "randomSeed", "bit", "bitClear", "bitRead", "bitSet", "bitWrite", "highByte", "lowByte", "attachInterrupt", "detachInterrupt", "interrupts", "noInterrupts", "Serial", "Stream", "HIGH", "LOW", "INPUT", "OUTPUT" };
 
         public MainWindow()
         {
             InitializeComponent();
 
             CheckForIllegalCrossThreadCalls = false;
+
+            SyntaxHighlighter highlighter = new SyntaxHighlighter(tbCode);
+
+            highlighter.AddPattern(new PatternDefinition(new string[] { "int", "float", "String", "double", "void", "HIGH", "LOW", "INPUT", "OUTPUT" }), new SyntaxStyle(Color.LightBlue));
+
+            highlighter.AddPattern(new PatternDefinition(new string[] { "digitalRead", "digitalWrite", "pinMode", "analogRead", "analogReference", "analogWrite", "analogReadResolution", "analogWriteResolution", "noTone", "pulseIn", "pulseInLong", "shiftIn", "shiftOut", "tone", "delay", "delayMicroseconds", "micros", "millis", "abs", "constrain", "map", "max", "min", "pow", "sq", "sqrt", "cos", "sin", "tan", "isAlpha", "isAlphaNumeric", "isAscii", "isControl", "isDigit", "isGraph", "isHexadecimalDigit", "isLowerCase", "isPrintable", "isPunct", "isSpace", "isUpperCase", "isWhitespace", "random", "randomSeed", "bit", "bitClear", "bitRead", "bitSet", "bitWrite", "highByte", "lowByte", "attachInterrupt", "detachInterrupt", "interrupts", "noInterrupts", "Serial", "Stream" }), new SyntaxStyle(Color.Orange));
+
+            highlighter.AddPattern(new PatternDefinition(new string[] { "#include", "#define" }), new SyntaxStyle(Color.DarkOliveGreen));
         }
 
-        void IntelliSense()
+        public void IntelliSense()
         {
+            completed = false;
+
             lbCompletion.Items.Clear();
 
             string text = " " + tbCode.Text;
@@ -48,11 +63,13 @@ namespace Arduino_Pro
                         }
                         catch (Exception)
                         {
+
                         }
                     }
 
                     break;
                 }
+
             }
 
             if (lbCompletion.Items.Count > 0)
@@ -79,46 +96,26 @@ namespace Arduino_Pro
 
                 lbCompletion.Visible = false;
             }
-        }
 
-        private void tbCode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Tab)
-            {
-                if (lbCompletion.Enabled)
-                {
-                    tbCode.Undo();
-
-                    tbCode.Text.Insert(tbCode.SelectionStart, lbCompletion.SelectedItem.ToString());
-                }
-            }
-
-            if (e.KeyCode == Keys.Down)
-            {
-                try
-                {
-                    lbCompletion.SelectedIndex++;
-                }
-                catch (Exception)
-                {
-                }
-            }
-
-            if (e.KeyCode == Keys.Up)
-            {
-                if (lbCompletion.SelectedIndex != 0)
-                    lbCompletion.SelectedIndex--;
-            }
+            completed = true;
         }
 
         private void IntelliSenseWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             IntelliSense();
+        }
+
+        private void tbCode_Key(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                tbCode.Text.Insert(tbCode.SelectionStart, "          ");
+            }
+        }
+
+        private void tbCode_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
