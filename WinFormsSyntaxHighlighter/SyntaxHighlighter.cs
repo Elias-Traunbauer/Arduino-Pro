@@ -16,8 +16,6 @@ namespace WinFormsSyntaxHighlighter
         /// </summary>
         private readonly RichTextBox _richTextBox;
 
-        private readonly ListBox _lbCompletion;
-
         private readonly int _fontSizeFactor;
 
         private readonly string _fontName;
@@ -33,16 +31,15 @@ namespace WinFormsSyntaxHighlighter
 
         private readonly List<PatternStyleMap> _patternStyles = new List<PatternStyleMap>(); 
 
-        public SyntaxHighlighter(RichTextBox richTextBox, ListBox listBox)
+        public SyntaxHighlighter(RichTextBox richTextBox)
         {
             if (richTextBox == null)
                 throw new ArgumentNullException("richTextBox");
 
             _richTextBox = richTextBox;
 
-            _lbCompletion = listBox;
-
             _fontSizeFactor = Convert.ToInt32(_richTextBox.Font.Size * 2);
+
             _fontName = _richTextBox.Font.Name;
 
             DisableHighlighting = false;

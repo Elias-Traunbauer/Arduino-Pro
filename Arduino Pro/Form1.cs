@@ -25,7 +25,7 @@ namespace Arduino_Pro
 
             CheckForIllegalCrossThreadCalls = false;
 
-            SyntaxHighlighter highlighter = new SyntaxHighlighter(tbCode, lbCompletion);
+            SyntaxHighlighter highlighter = new SyntaxHighlighter(tbCode);
 
             highlighter.AddPattern(new PatternDefinition(new string[] { "int", "float", "String", "double", "void", "HIGH", "LOW", "INPUT", "OUTPUT" }), new SyntaxStyle(Color.LightBlue));
 
@@ -33,107 +33,66 @@ namespace Arduino_Pro
 
             highlighter.AddPattern(new PatternDefinition(new string[] { "#include", "#define" }), new SyntaxStyle(Color.DarkOliveGreen));
         }
-
-        public void IntelliSense()
+        private void tbCode_TextChanged(object sender, EventArgs e)
         {
+            IntelliSense();
+        }
+
+        private void IntelliSense()
+        {
+            
+
             lbCompletion.Items.Clear();
 
-            string text = " " + tbCode.Text;
+            string text = tbCode.Text;
 
-            int pos = tbCode.SelectionStart;
+            int pos = tbCode.SelectionStart - 1;
 
-            for (int i = pos; i > 0; i--)
+            text = text.Replace('\n', ' ');
+
+            text = text.Replace('\r', ' ');
+
+            for (int i = pos - 1; i > 0; i--)
             {
-                if (text[i].ToString() == " ")
+                if (text[i] == ' ')
                 {
-                    i++;
-
-                    int length = pos - i + 1;
+                    string currentWord = text.Substring(i + 1, pos - i);
 
                     foreach (string item in autoComplete)
                     {
-                        try
+                        if (item.Substring(0, Math.Min(currentWord.Length, item.Length)) == currentWord)
                         {
-                            if (text.Substring(i, length) == item.Substring(0, length))
-                            {
-                                lbCompletion.Items.Add(item);
-                            }
-                        }
-                        catch (Exception)
-                        {
-
+                            lbCompletion.Items.Add(item);
                         }
                     }
 
                     break;
                 }
-
             }
 
             if (lbCompletion.Items.Count > 0)
             {
-                Point temp = tbCode.GetPositionFromCharIndex(pos);
+                Point point = tbCode.GetPositionFromCharIndex(pos);
 
-                temp.X += tbCode.Location.X + 3;
+                point.X += 12;
 
-                temp.Y += tbCode.Location.Y + 20;
+                point.Y += 48;
 
-                lbCompletion.Location = temp;
-
-                lbCompletion.SetSelected(0, true);
+                lbCompletion.Location = point;
 
                 lbCompletion.Enabled = true;
 
                 lbCompletion.Visible = true;
 
                 lbCompletion.BringToFront();
+
+                lbCompletion.Update();
             }
             else
             {
-                lbCompletion.Enabled = false;
+                //lbCompletion.Visible = false;
 
-                lbCompletion.Visible = false;
-            }
-        }
-
-        private void IntelliSenseWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //IntelliSense();
-        }
-
-        private void tbCode_Key(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Tab)
-            {
-                tbCode.Text.Insert(tbCode.SelectionStart, "          ");
-            }
-        }
-
-        private void tbCode_TextChanged(object sender, EventArgs e)
-        {
-            IntelliSense();   
-        }
-
-        private void TbCodeOnPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (lbCompletion.Enabled)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    isHandled = true;
-
-                    Debug.WriteLine("YEYE");
-                }
-            }
-        }
-
-        private void tbCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (isHandled)
-            {
-                e.Handled = true;
-
-                isHandled = false;
+                //lbCompletion.Enabled = false;
             }
         }
     }
